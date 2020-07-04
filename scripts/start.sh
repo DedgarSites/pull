@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "pull v0.0.2"
+echo "pull v0.0.3"
 
 if [ "$PAUSE_ON_START" = "true" ] ; then
   echo
@@ -22,17 +22,23 @@ fi
 echo "Using $CERT_SERVER"
 echo "Processing domains $DOMAIN_LIST"
 
+# turn our comma-separated string of www.example1.com,www.example2.com into an iterable array of items
 IFS=', ' read -r -a array <<< "$DOMAIN_LIST"
 
 while true; do
   for i in "${array[@]}"; do
         echo "Checking if our LE certificates need to be renewed with Lego"
+
+        # use base name of "example" from www.example.com
+        IFS='.' read -r -a domain <<< "$i"
+        name="${domain[1]}"
+
           /usr/local/bin/lego --tls=true \
           --tls.port=":$TLS_PORT" \
           --email="$CERT_EMAIL" \
           --domains="$i" \
           --path="$CERT_PATH" \
-          --filename="$i" \
+          --filename="$name" \
           --server="$CERT_SERVER" \
           --accept-tos run
           sleep 60
