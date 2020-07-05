@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "pull v0.0.3"
+echo "pull v0.0.4"
 
 if [ "$PAUSE_ON_START" = "true" ] ; then
   echo
