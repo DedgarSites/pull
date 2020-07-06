@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "pull v0.0.4"
+echo "pull $SIDECAR_VER"
 
 if [ "$PAUSE_ON_START" = "true" ] ; then
   echo
@@ -33,8 +33,8 @@ while true; do
         IFS='.' read -r -a domain <<< "$i"
         name="${domain[1]}"
 
-          /usr/local/bin/lego --tls=true \
-          --tls.port=":$TLS_PORT" \
+          /use/local/bin/lego \
+          --dns namecheap \
           --email="$CERT_EMAIL" \
           --domains="$i" \
           --path="$CERT_PATH" \
