@@ -37,7 +37,7 @@ while true; do
           --dns namecheap \
           --email="$CERT_EMAIL" \
           --domains="$i" \
-          --path="$CERT_PATH" \
+          --path="$TLS_FILE_PATH" \
           --filename="$name" \
           --server="$CERT_SERVER" \
           --accept-tos run
