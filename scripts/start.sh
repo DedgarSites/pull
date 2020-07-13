@@ -33,7 +33,7 @@ while true; do
         IFS='.' read -r -a domain <<< "$i"
         name="${domain[1]}"
 
-          /use/local/bin/lego \
+          /user/local/bin/lego \
           --dns namecheap \
           --email="$CERT_EMAIL" \
           --domains="$i" \
